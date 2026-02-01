@@ -1,0 +1,20 @@
+# Maven
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env*.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Logs
+*.log

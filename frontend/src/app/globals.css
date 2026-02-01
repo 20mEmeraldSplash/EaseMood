@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 移动端优先 */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 按钮样式 */
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.btn-primary {
+  background-color: #0070f3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0051cc;
+}
+
+.btn-secondary {
+  background-color: #666;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+}
+
+/* 输入框样式 */
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* 卡片样式 */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 情绪滑块样式 */
+.mood-slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0;
+  padding: 0 20px;
+}
+
+.mood-option {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 12px;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.mood-option:hover {
+  background-color: #f0f0f0;
+}
+
+.mood-option.selected {
+  border-color: #0070f3;
+  background-color: #e6f2ff;
+}
+
+.mood-option .emoji {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.mood-option .label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 文字计数 */
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  margin-top: -12px;
+  margin-bottom: 16px;
+}
+
+/* 列表样式 */
+.mood-list {
+  list-style: none;
+}
+
+.mood-item {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #0070f3;
+}
+
+.mood-item .mood-score {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.mood-item .mood-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.mood-item .mood-date {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: #999;
+}
+
+/* 标题样式 */
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* 响应式 */
+@media (min-width: 768px) {
+  .container {
+    max-width: 600px;
+    padding: 40px;
+  }
+}
