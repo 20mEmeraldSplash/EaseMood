@@ -27,7 +27,7 @@ export default function HomePage() {
           saveSessionId(response.sessionId);
           setSessionId(response.sessionId);
         } catch (err) {
-          setError('初始化失败，请刷新页面重试');
+          setError('Initialization failed, please refresh and try again');
         }
       }
     }
@@ -36,12 +36,12 @@ export default function HomePage() {
 
   const handleSubmit = async () => {
     if (moodScore === null) {
-      setError('请选择你的情绪');
+      setError('Please select your mood');
       return;
     }
 
     if (!sessionId) {
-      setError('会话未初始化，请刷新页面');
+      setError('Session not initialized, please refresh the page');
       return;
     }
 
@@ -57,20 +57,20 @@ export default function HomePage() {
       // 跳转到完成页，传递 moodScore
       router.push(`/done?moodScore=${moodScore}`);
     } catch (err: any) {
-      setError(err.message || '提交失败，请重试');
+      setError(err.message || 'Submission failed, please try again');
       setIsSubmitting(false);
     }
   };
 
   const moodOptions = [
-    { score: -1, emoji: '😔', label: '低落' },
-    { score: 0, emoji: '😐', label: '平静' },
-    { score: 1, emoji: '😊', label: '开心' },
+    { score: -1, emoji: '😔', label: 'Down' },
+    { score: 0, emoji: '😐', label: 'Neutral' },
+    { score: 1, emoji: '😊', label: 'Happy' },
   ];
 
   return (
     <div className="container">
-      <h1 className="title">记录你的情绪</h1>
+      <h1 className="title">How are you feeling?</h1>
 
       {/* 情绪选择 */}
       <div className="mood-slider">
@@ -93,7 +93,7 @@ export default function HomePage() {
       <div className="card">
         <textarea
           className="textarea"
-          placeholder="想说点什么吗？（可选，最多140字）"
+          placeholder="Want to say something? (Optional, max 140 characters)"
           value={text}
           onChange={(e) => {
             if (e.target.value.length <= 140) {
@@ -118,7 +118,7 @@ export default function HomePage() {
         onClick={handleSubmit}
         disabled={isSubmitting || moodScore === null}
       >
-        {isSubmitting ? '提交中...' : '放下它'}
+        {isSubmitting ? 'Submitting...' : 'Let it go'}
       </button>
 
       {/* 回看链接 */}
@@ -127,7 +127,7 @@ export default function HomePage() {
           href="/me"
           style={{ color: '#0070f3', textDecoration: 'none', fontSize: '14px' }}
         >
-          查看我的记录
+          View my records
         </a>
       </div>
     </div>

@@ -40,7 +40,7 @@ export async function createSession(): Promise<CreateSessionResponse> {
     },
   });
   if (!response.ok) {
-    throw new Error('创建 session 失败');
+    throw new Error('Failed to create session');
   }
   return response.json();
 }
@@ -58,7 +58,7 @@ export async function createMood(request: CreateMoodRequest): Promise<MoodRespon
   });
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || '创建情绪记录失败');
+    throw new Error(error.error || 'Failed to create mood entry');
   }
   return response.json();
 }
@@ -69,7 +69,7 @@ export async function createMood(request: CreateMoodRequest): Promise<MoodRespon
 export async function getOthersMood(moodScore: number): Promise<PublicMoodSnippetResponse[]> {
   const response = await fetch(`${API_BASE_URL}/mood/others?moodScore=${moodScore}`);
   if (!response.ok) {
-    throw new Error('获取匿名情绪失败');
+    throw new Error('Failed to get anonymous moods');
   }
   return response.json();
 }
@@ -80,7 +80,7 @@ export async function getOthersMood(moodScore: number): Promise<PublicMoodSnippe
 export async function getMoodCount(moodScore: number): Promise<CountResponse> {
   const response = await fetch(`${API_BASE_URL}/mood/count?moodScore=${moodScore}`);
   if (!response.ok) {
-    throw new Error('获取情绪数量失败');
+    throw new Error('Failed to get mood count');
   }
   return response.json();
 }
@@ -91,7 +91,7 @@ export async function getMoodCount(moodScore: number): Promise<CountResponse> {
 export async function getMyMoods(sessionId: string, limit: number = 7): Promise<MoodResponse[]> {
   const response = await fetch(`${API_BASE_URL}/mood/me?sessionId=${sessionId}&limit=${limit}`);
   if (!response.ok) {
-    throw new Error('获取我的记录失败');
+    throw new Error('Failed to get my records');
   }
   return response.json();
 }

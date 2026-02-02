@@ -20,7 +20,7 @@ export default function DonePage() {
   useEffect(() => {
     async function loadData() {
       if (!moodScore) {
-        setError('参数错误');
+        setError('Invalid parameter');
         setLoading(false);
         return;
       }
@@ -37,7 +37,7 @@ export default function DonePage() {
         setCount(countResponse.count);
         setOthersMoods(othersResponse.map((item) => item.text));
       } catch (err: any) {
-        setError(err.message || '加载数据失败');
+        setError(err.message || 'Failed to load data');
       } finally {
         setLoading(false);
       }
@@ -48,18 +48,18 @@ export default function DonePage() {
 
   const getMoodLabel = (score: number | null) => {
     if (score === null) return '';
-    if (score === -1) return '低落';
-    if (score === 0) return '平静';
-    if (score === 1) return '开心';
+    if (score === -1) return 'down';
+    if (score === 0) return 'neutral';
+    if (score === 1) return 'happy';
     return '';
   };
 
   return (
     <div className="container">
-      <h1 className="title">已记录</h1>
+      <h1 className="title">Recorded</h1>
 
       {loading ? (
-        <div className="empty-state">加载中...</div>
+        <div className="empty-state">Loading...</div>
       ) : error ? (
         <div className="empty-state" style={{ color: 'red' }}>{error}</div>
       ) : (
@@ -69,11 +69,11 @@ export default function DonePage() {
             <div style={{ textAlign: 'center', fontSize: '18px', lineHeight: '1.6' }}>
               {count !== null && count > 0 ? (
                 <>
-                  今天有 <strong>{count}</strong> 个人和你一样{getMoodLabel(parseInt(moodScore || '0'))}
+                  <strong>{count}</strong> people felt the same way ({getMoodLabel(parseInt(moodScore || '0'))}) today
                 </>
               ) : (
                 <>
-                  你是今天第一个记录{getMoodLabel(parseInt(moodScore || '0'))}情绪的人
+                  You're the first person to record a {getMoodLabel(parseInt(moodScore || '0'))} mood today
                 </>
               )}
             </div>
@@ -82,7 +82,7 @@ export default function DonePage() {
           {/* 匿名情绪列表 */}
           {othersMoods.length > 0 && (
             <div className="card">
-              <h2 className="subtitle">其他人的情绪</h2>
+              <h2 className="subtitle">Others' moods</h2>
               <ul className="mood-list">
                 {othersMoods.map((text, index) => (
                   <li key={index} className="mood-item">
@@ -98,7 +98,7 @@ export default function DonePage() {
             className="btn btn-secondary"
             onClick={() => router.push('/')}
           >
-            够了，先这样吧
+            That's enough for now
           </button>
         </>
       )}

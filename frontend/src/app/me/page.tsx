@@ -18,7 +18,7 @@ export default function MePage() {
     async function loadMyMoods() {
       const sessionId = getOrCreateSessionId();
       if (!sessionId) {
-        setError('未找到会话记录，请先记录一次情绪');
+        setError('No session found, please record a mood first');
         setLoading(false);
         return;
       }
@@ -27,7 +27,7 @@ export default function MePage() {
         const data = await getMyMoods(sessionId, 7);
         setMoods(data);
       } catch (err: any) {
-        setError(err.message || '加载记录失败');
+        setError(err.message || 'Failed to load records');
       } finally {
         setLoading(false);
       }
@@ -37,9 +37,9 @@ export default function MePage() {
   }, []);
 
   const getMoodLabel = (score: number) => {
-    if (score === -1) return '😔 低落';
-    if (score === 0) return '😐 平静';
-    if (score === 1) return '😊 开心';
+    if (score === -1) return '😔 Down';
+    if (score === 0) return '😐 Neutral';
+    if (score === 1) return '😊 Happy';
     return '';
   };
 
@@ -51,12 +51,12 @@ export default function MePage() {
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    if (minutes < 1) return '刚刚';
-    if (minutes < 60) return `${minutes}分钟前`;
-    if (hours < 24) return `${hours}小时前`;
-    if (days < 7) return `${days}天前`;
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
     
-    return date.toLocaleDateString('zh-CN', {
+    return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
@@ -66,21 +66,21 @@ export default function MePage() {
 
   return (
     <div className="container">
-      <h1 className="title">我的记录</h1>
+      <h1 className="title">My Records</h1>
 
       {loading ? (
-        <div className="empty-state">加载中...</div>
+        <div className="empty-state">Loading...</div>
       ) : error ? (
         <div className="empty-state" style={{ color: 'red' }}>{error}</div>
       ) : moods.length === 0 ? (
         <div className="empty-state">
-          <p>还没有记录</p>
+          <p>No records yet</p>
           <button
             className="btn btn-primary"
             onClick={() => router.push('/')}
             style={{ marginTop: '24px' }}
           >
-            去记录
+            Go to record
           </button>
         </div>
       ) : (
@@ -101,7 +101,7 @@ export default function MePage() {
             className="btn btn-secondary"
             onClick={() => router.push('/')}
           >
-            返回首页
+            Back to home
           </button>
         </>
       )}
